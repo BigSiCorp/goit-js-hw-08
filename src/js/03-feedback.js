@@ -1,3 +1,5 @@
+import throttle from 'lodash.throttle';
+
 const forma = document.querySelector('.feedback-form');
 const formData = JSON.parse(localStorage.getItem('feedback-form-state')) || {};
 const { email = null, message = null } = formData;
