@@ -1,7 +1,7 @@
 import * as throttle from 'lodash.throttle';
 
 const forma = document.querySelector('.feedback-form');
-const formData = JSON.parse(localStorage.getItem('feedback-form-state')) || {};
+let formData = JSON.parse(localStorage.getItem('feedback-form-state')) || {};
 const { email = null, message = null } = formData;
 
 document.querySelector('input').value = email;
@@ -18,11 +18,12 @@ function saveLocalStorage(event) {
 
 function showConsole(event) {
   event.preventDefault();
-  if (!email || !message) {
+  if (!formData.email || !formData.message) {
     alert('Please, fulfill the forma');
     return;
   }
   console.log(formData);
   event.currentTarget.reset();
   localStorage.clear();
+  formData = {};
 }
